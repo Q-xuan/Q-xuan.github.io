@@ -144,6 +144,209 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-third" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/03/23/third/">third</a>
+    </h1>
+  
+
+        
+        <a href="/2020/03/23/third/" class="archive-article-date">
+  	<time datetime="2020-03-23T10:57:35.698Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-23</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="title-今天做的Java题目"><a href="#title-今天做的Java题目" class="headerlink" title="title:今天做的Java题目"></a>title:今天做的Java题目</h2><ul>
+<li><h2 id="第一题的题目是这样子的"><a href="#第一题的题目是这样子的" class="headerlink" title="第一题的题目是这样子的"></a>第一题的题目是这样子的</h2><p>需要实现的功能是：输入一行字符，分别统计并输出该字符串中的英文字母、空格、<br>数字和其他字符的个数</p>
+<p><img src="3.23%EF%BC%881%EF%BC%89.png" alt="avatar"></p>
+</li>
+<li><p>  解决方法：使用了数组+数组遍历</p>
+<p>   import java.util.Scanner;</p>
+<p>   public class Text {</p>
+<pre><code>public static void main(String[] args) {
+
+    int number=0; //判断数字
+    int blank = 0; //判断空格
+    int english = 0; //判断英文
+    int other = 0; //判断其他字符
+    Scanner in = new Scanner(System.in);
+    System.out.print(&quot;输入需要判断的句子&quot;);
+    String a=in.nextLine();
+    char[] test= a.toCharArray();
+    /**
+     * for()使用数组遍历判断数字，空格，英文，其他字符的个数
+     * matches()方法用于检测字符串是否匹配
+     */
+    for(char cs:test) {
+        if((cs+&quot;&quot;).matches(&quot;[a-zA-Z]&quot;)) {
+               english++;
+           }else if((cs+&quot;&quot;).matches(&quot;[0-9]&quot;)) {
+               number++;
+           }else if((cs+&quot;&quot;).matches(&quot; &quot;)) {
+               blank++;
+           }else {
+               other++;
+           }
+        }
+
+        System.out.println(&quot;数字个数：&quot;+number);
+       System.out.println(&quot;英文个数：&quot;+english);
+       System.out.println(&quot;空格个数：&quot;+blank);
+       System.out.println(&quot;其他字符个数：&quot;+other);
+       }</code></pre></li>
+</ul>
+<pre><code>}</code></pre><ul>
+<li><h3 id="那么第二题"><a href="#那么第二题" class="headerlink" title="那么第二题"></a>那么第二题</h3><p>编写Java程序，键盘接收10个整数，保存在数组中，对这10个整数从小到大进行排序并输出           </p>
+<p><img src="3.23%EF%BC%882%EF%BC%89.png" alt="avatar"> </p>
+<p>emm冒泡排序</p>
+<p>import java.util.Scanner;</p>
+<p>public class Test{</p>
+<pre><code>public static void main(String args[]){
+    Scanner in = new Scanner(System.in) ;
+    //接受实例化对象，
+    int[] x = new int[10];
+    //创建数组
+    for(int i = 0; i&lt;x.length ; i++){
+        System.out.print(&quot;请输入第&quot; +(i+1)+&quot;个数:&quot; );
+        x[i] = in.nextInt() ;  
+        //循环接受数据
+    }
+    for(int a=0;a&lt;x.length ; a++){   
+        //把接受到的数组，进行排序
+        for(int b=a+1 ; b&lt;x.length ;b++){
+            if(x[a]&gt;x[b]){
+                int rank = x[a] ;
+                x[a] = x[b] ;
+                x[b] = rank ;
+            }
+        }
+    }
+    for(int start : x){ //for each
+        System.out.print(start+&quot;、&quot;);   //循环输入数据
+    }
+}</code></pre><p>}</p>
+</li>
+<li><p>###来看下第三题<br>考的是数组啦，定义两个数组，首先把两个数组合并成一个新数组，  然后把新数组中的所有元素逆序排列<br>图片：<br><img src="3.23%EF%BC%882%EF%BC%89.png" alt="avtatar"></p>
+<p>就是用数组赋值啦</p>
+<pre><code>public class Test {
+    public static void main(String[] args) {
+        int[]one=new  int[]{10,20,30};
+        //给数组one赋值
+        int []two=new int[]{40,50,60};
+        //给数组two赋值
+        int[]three=new int[one.length+two.length];
+        //将前两个数组复制其中
+        System.out.print(&quot;第一组数组数据为:&quot;);
+        for (int a = 0; a &lt; one.length; a++) {
+            System.out.print(one[a]+&quot;,&quot;);
+        }//输出第一个数组的值
+        System.out.print(&quot;\n&quot;+&quot;第二组数组数据为:&quot;);
+        for (int b = 0; b &lt; two.length; b++) {
+            System.out.print(two[b]+&quot;,&quot;);
+        }//输出第二个数组的值
+        System.out.print(&quot;\n&quot;+&quot;合并数组为:&quot;);
+        for (int i = 0; i &lt; three.length; i++) {
+            if(i&lt;one.length){
+                three[i]=one[i];
+            }else {
+                three[i]=two[i-one.length];
+            }
+            System.out.print(three[i]+&quot;,&quot;);
+            }//合并数组并输出
+        System.out.print(&quot;\n逆序为:&quot;);
+        for (int j =three.length-1;j&gt;=0 ;j--) {
+            System.out.print(three[j]+&quot;,&quot;);
+        }//逆序数组并输出
+
+    }
+}</code></pre></li>
+<li><p>####第四题，最后一题啦，虽然做起来有点懵逼<br>题目是这样的：使用面向对象思想，编写Java程序。键盘接收用户输入的5位学生（Student）的姓名（name）和身高（height，单位是米），<br>输出这些学生的平均身高。运行结果如图4所示。要求：使用循环和数组实现这些功能。<br>#####要求：<br>使用面向对象思想编程，并计算5位同学的平均身高。<br>1）按要求定义学生类Student。该类中包含2个属性：<br>学生姓名  name<br>身高（单位：米） height<br>2）编写测试类Test。在Test类中添加以下2个方法：<br>[求平均身高方法]<br>double getAvg(Student[]students)：返回students数组中学生身高的平均值。</p>
+</li>
+</ul>
+<p>[入口方法]<br>public static void main(String[]args)：中实现步骤：<br>（1）声明长度为5的Student类型数组；<br>（2）循环接收用户输入的5位同学的信息；<br>（3）调用getAvg()方法，获取所有同学身高的平均值；<br>最后打印平均身高。</p>
+<pre><code>说实话我看得挺懵逼的，  
+虽然很多要求没达到我还是用了自己的方法满足了基本要求  
+虽然到最后都没弄懂怎么搞这串代码   
+double getAvg(Student[]students)：返回students数组中学生身高的平均值。</code></pre><p>-<br>####Student学生类<br>    import java.util.Scanner;</p>
+<pre><code>public class Student {
+        String name;//定义String类型
+        double height;//定义double类型
+        public double getAvg(double[]students) {
+            double stu = 0.0;
+            for(int i = 0;i&lt;students.length;i++) {
+                stu+=students[i];
+            }//计算平均身高
+                stu=stu/5;
+                return stu;
+            }
+
+        }        </code></pre><p>####StudentTest测试类<br>    import java.util.Scanner;</p>
+<pre><code>public class StudentTest {
+    public static void main(String[] args) {
+        Student stu =new Student();
+        Scanner in = new Scanner(System.in);
+         String[]names = new String[5];  
+        double[]student = new double [5];
+        for (int i = 0; i &lt; student.length; i++) {  
+            System.out.print(&quot;请输入第&quot;+(i+1)+&quot;位同学的姓名,身高:&quot;);  
+             String name = in.next();  //接受姓名
+              double height = in.nextDouble();  
+              student[i] = height;  
+              names[i] = name;  
+        }
+        System.out.println(&quot;平均身高是&quot;+stu.getAvg(student)+&quot;米&quot;);
+    }
+}    </code></pre><h4 id="好啦今日份的记录到此结束"><a href="#好啦今日份的记录到此结束" class="headerlink" title="好啦今日份的记录到此结束"></a>好啦今日份的记录到此结束</h4><p><img src="over23.gif" alt="avtatar"></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/03/23/third/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-second" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
